@@ -1,0 +1,33 @@
+<section class="login-wrapper">
+  <section class="login-header">
+    <span class="login__text">
+       {{ title }}
+    </span>
+  </section>
+
+  <section class="login-content">
+    <form class="login-form" [formGroup]="loginForm">
+      <mat-form-field>
+        <input matInput placeholder="Login" formControlName="login" [errorStateMatcher]="matcher">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>
+    </form>
+  </section>
+
+  <section class="login-footer">
+    <button mat-button [disabled]="!!(((loginForm.controls['login'].dirty
+                                       || loginForm.controls['login'].touched)
+                                        && loginForm.controls['login'].errors) &&
+                                        loginForm.controls['password'].dirty
+                                       || (loginForm.controls['password'].touched)
+                                        && loginForm.controls['password'].errors)
+                                    "
+        (click)="_login()"
+    >
+      Login
+    </button>
+  </section>
+</section>

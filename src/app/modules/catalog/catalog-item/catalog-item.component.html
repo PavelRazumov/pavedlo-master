@@ -1,0 +1,25 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ catalogData?.title }}</mat-card-title>
+    <mat-card-subtitle>{{ catalogData?.subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="catalogData?.image" alt="Potatoes">
+  <mat-card-content>
+    {{ catalogData?.description }}
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="mai-catalog-price-group">
+      <mat-card-subtitle>Price:</mat-card-subtitle>
+      <mat-card-title>{{ (catalogData?.newPrice || catalogData?.price) + "$" }}</mat-card-title>
+    </div>
+    <div class="mai-catalog-buttons-group">
+      <button mat-button>Add to cart</button>
+      <form [formGroup]="options">
+        <mat-form-field>
+          <input matInput [type]="'number'" placeholder="Add more" value="0" formControlName="quantity" min="0" [max]=catalogData.inStock>
+          <mat-error *ngIf="options.get('quantity')?.invalid">Please select more than 0</mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-card-actions>
+</mat-card>
